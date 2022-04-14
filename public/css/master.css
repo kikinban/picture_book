@@ -105,14 +105,123 @@ input, select {
 /* ------------------------------------------
                 トップページscss
 -------------------------------------------- */
+/* ------ タイトル文字・画像 ----- */
+.top_title_images {
+  height: 300px;
+  text-align: center;
+  position: relative;
+}
 .top_title_images h1 {
-  font-size: bold;
   color: aquamarine;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  font-size: 25px;
 }
 .top_title_images p {
-  font-size: 14px;
+  font-size: 12px;
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* -----(共有)トップタイトル・画像下の項目別見出し ----- */
+.top_title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* ------ 新着絵本 ----- */
+.top_new_arrivals {
+  width: 90%;
+  margin: 0 auto;
+}
+.top_new_arrivals .top_new_images {
+  display: flex;
+}
+.top_new_arrivals .top_new_images .top_new_image {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 5px;
+  border: solid 2px gray;
+  margin: 0 5px;
+}
+.top_new_arrivals .top_new_images .top_new_image img {
+  width: 100%;
+}
+.top_new_arrivals .top_new_images .top_new_image ul {
+  margin-top: 15px;
+}
+.top_new_arrivals .top_new_images .top_new_image ul li {
+  list-style: none;
+  font-size: 12px;
+  margin: 5px 0;
+}
+
+/* ------ 年齢別 ----- */
+.top_ages {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.top_ages .top_age ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.top_ages .top_age ul li {
+  list-style: none;
+  padding: 10px 20px;
+  margin: 5px;
+  width: 15%;
+  border: solid 2px gray;
 }
 
 /* ------------------------------------------
                     共通scss
 -------------------------------------------- */
+header .header_all .header_buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .header_all .header_buttons h1 {
+  margin-left: 10px;
+}
+header .header_all .header_buttons ul {
+  display: flex;
+  align-items: center;
+}
+header .header_all .header_buttons ul li {
+  list-style: none;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+  font-size: 12px;
+}
+header .header_all .header_ul ul {
+  display: flex;
+  justify-content: space-around;
+  background-color: pink;
+}
+header .header_all .header_ul ul li {
+  list-style: none;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+footer ul {
+  display: flex;
+  flex-direction: column;
+}
+footer ul li {
+  list-style: none;
+  margin: 10px 5px;
+}
