@@ -9,3 +9,62 @@
                     共通scss
 -------------------------------------------- */
 
+header {
+
+    // ヘッダー全体
+    .header_all {
+
+        // 検索・カート・ログインボタン
+        .header_buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h1 {
+                margin-left: 10px;
+            }
+
+            ul{
+                display: flex;
+                align-items: center;
+
+                li {
+                    list-style: none;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    margin: 0 10px;
+                    font-size: 12px;
+                }
+            }
+        }
+
+        // 新着・年齢別・販売・特集・レビュー
+        .header_ul {
+
+            ul{
+                display: flex;
+                justify-content: space-around;
+                background-color: pink;
+
+                li {
+                    list-style: none;
+                    height: 40px;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}
+
+footer {
+    ul {
+        display: flex;
+        flex-direction: column;
+        li {
+            list-style: none;
+            margin: 10px 5px;
+        }
+    }
+}
