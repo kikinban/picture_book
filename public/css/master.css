@@ -129,38 +129,61 @@ input, select {
 }
 
 /* -----(共有)トップタイトル・画像下の項目別見出し ----- */
-.top_title {
+.top_heading_title {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
 /* ------ 新着絵本 ----- */
-.top_new_arrivals {
+.top_new_arrivals_books {
   width: 90%;
   margin: 0 auto;
 }
-.top_new_arrivals .top_new_images {
-  display: flex;
+.top_new_arrivals_books .top_new_arrivals_book {
+  width: 100%;
+  overflow: hidden;
 }
-.top_new_arrivals .top_new_images .top_new_image {
+.top_new_arrivals_books .top_new_arrivals_book .top_new_arrivals_book_details {
+  display: flex;
+  width: 500px;
+}
+.top_new_arrivals_books .top_new_arrivals_book .top_new_arrivals_book_details .top_new_arrivals_book_detail {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 18%;
   padding: 5px;
   border: solid 2px gray;
-  margin: 0 5px;
+  margin-right: 10px;
 }
-.top_new_arrivals .top_new_images .top_new_image img {
+.top_new_arrivals_books .top_new_arrivals_book .top_new_arrivals_book_details .top_new_arrivals_book_detail img {
   width: 100%;
 }
-.top_new_arrivals .top_new_images .top_new_image ul {
+.top_new_arrivals_books .top_new_arrivals_book .top_new_arrivals_book_details .top_new_arrivals_book_detail ul {
   margin-top: 15px;
 }
-.top_new_arrivals .top_new_images .top_new_image ul li {
+.top_new_arrivals_books .top_new_arrivals_book .top_new_arrivals_book_details .top_new_arrivals_book_detail ul li {
   list-style: none;
   font-size: 12px;
   margin: 5px 0;
+}
+
+/* ------ 特集 ----- */
+.top_special_features {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.top_special_features .top_special_feature .top_special_feature_image {
+  background-color: pink;
+  height: 60px;
+  margin-bottom: 15px;
+}
+.top_special_features .top_special_feature .top_special_feature_image img {
+  width: 30%;
+}
+.top_special_features .top_special_feature .top_special_feature_image ul li {
+  list-style: none;
 }
 
 /* ------ 年齢別 ----- */
@@ -172,14 +195,24 @@ input, select {
 .top_ages .top_age ul {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .top_ages .top_age ul li {
   list-style: none;
   padding: 10px 20px;
-  margin: 5px;
-  width: 15%;
+  width: 19%;
   border: solid 2px gray;
+  margin-bottom: 5px;
+}
+
+/* ------ 絵本販売 ----- */
+.top_sales {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.top_sales ul li {
+  list-style: none;
 }
 
 /* ------------------------------------------
