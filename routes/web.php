@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TopController;
+use App\Http\Controllers\SpreadSheetController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/top',[HomeController::class, 'bookDetail']);
+Route::get('/top',[TopController::class, 'bookDetail']);
 
 
+Route::get('/sheet',[SpreadSheetController::class, 'store']);
+
+Route::get('/data',[SpreadSheetController::class, 'index']);
