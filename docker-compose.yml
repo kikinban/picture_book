@@ -27,7 +27,9 @@ services:
             - meilisearch
             - selenium
     mysql:
-        image: 'mysql/mysql-server:8.0'
+        build:
+            context: ./docker/mysql
+            dockerfile: Dockerfile
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
