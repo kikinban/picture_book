@@ -1,0 +1,150 @@
+
+/* ------------------------------------------
+                トップページscss
+-------------------------------------------- */
+
+/* ------ タイトル文字・画像 ----- */
+
+.top_title_images {
+    height: 300px;
+    text-align: center;
+    position: relative;
+
+    h1{
+        color: aquamarine;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 100%;
+        font-size: 25px;
+    }
+    p {
+        font-size: 12px;
+        position: absolute;
+        top: 58%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+}
+
+/* -----(共有)トップタイトル・画像下の項目別見出し ----- */
+
+// 見出し
+.top_heading_title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+/* ------ 新着絵本 ----- */
+
+.top_new_arrivals_books {
+    width: 90%;
+    margin: 0 auto;
+
+    // 絵本を一冊ずつ横並びにして、スライドショーとして表示
+    // TODO: スライドショーを設定する
+
+    .top_new_arrivals_book {
+        width: 100%;
+        overflow: hidden;
+
+        .top_new_arrivals_book_details {
+            display: flex;
+            width: 500px;
+            .top_new_arrivals_book_detail {
+                display: flex;
+                flex-direction: column;
+                width: 18%;
+                padding: 5px;
+                border: solid 2px gray;
+                margin-right: 10px;
+
+                img {
+                    width: 100%;
+                }
+
+                ul {
+                    margin-top: 15px;
+                    li {
+                        list-style: none;
+                        font-size: 12px;
+                        margin: 5px 0;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+/* ------ 特集 ----- */
+
+.top_special_features {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+
+
+    // 特集の枠
+    .top_special_feature {
+        .top_special_feature_image {
+            background-color: pink;
+            height: 60px;
+            margin-bottom: 15px;
+
+            img {
+                width: 30%;
+            }
+
+            ul {
+
+                li {
+                    list-style: none;
+                }
+            }
+        }
+    }
+}
+
+/* ------ 年齢別 ----- */
+
+.top_ages {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+
+    // 各年齢
+    .top_age {
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            li {
+                list-style: none;
+                padding: 10px 20px;
+                width: 19%;
+                border: solid 2px gray;
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
+
+/* ------ 絵本販売 ----- */
+
+.top_sales {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+
+    ul {
+
+        li {
+            list-style: none;
+        }
+    }
+}
+
