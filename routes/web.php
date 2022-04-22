@@ -23,6 +23,6 @@ Route::get('/', function () {
 Route::get('/top',[TopController::class, 'bookDetail']);
 
 
-Route::get('/sheet',[SpreadSheetController::class, 'store']);
+Route::get('/store',[SpreadSheetController::class, 'store']);
 
 Route::get('/data',[SpreadSheetController::class, 'index']);

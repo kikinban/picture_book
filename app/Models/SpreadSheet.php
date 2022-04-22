@@ -6,6 +6,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+// 関数をわける
+// pdoをベタがきしない
+// コメントをいるのといらないのを分ける
+// 汎用性を高める（booksテーブルの処理になっている）
 
 
 class SpreadSheet extends Model
@@ -33,6 +37,17 @@ class SpreadSheet extends Model
         // （変数spread_sheet_valuesに変数responseの中にあるgetValues()を代入）
         $spread_sheet_values = $response->getValues();
 
+        //１行目はフィールドの配列
+        $fields = $spread_sheet_values[0];
+
+        // fieldsの中はスプレットシートのフィールド名（先頭の行）が入っている
+        // $fields = array_shift($spread_sheet_values);
+        // これより下の$spread_sheet_valuesには先頭の行が入っていない
+        // 配列が作られる[0][1][2][3]（もとは[4]まであった）
+
+
+
+
 
         /**
          * スプレットシートから取得したデータをDBに保存したい
@@ -49,8 +64,6 @@ class SpreadSheet extends Model
                 'password'
             );
 
-            //１行目はフィールドの配列
-            $fields = $spread_sheet_values[0];
             $comma_sepalated_fields = implode(',',$fields);
             // $comma_sepalated_fields_colon = ":".$comma_sepalated_fields;
 
@@ -73,18 +86,81 @@ class SpreadSheet extends Model
             // インサートの準備
             $statement = $pdo->prepare($sql);
 
-            // インサート文（一行追加）を複数実行されるようにする
-            // $spread_sheet_valuesの行を複数インサートしたい。[0],[1],[2],[3]
-            // しかし[0]にはフィールド名が入っている為、そこはインサート文として取り入れないようにする
-            // それ以外の行を取り入れるようにする
-            // インサートの文と値のセットをループしたい
-            // row_count = テーブルの行のこと
+
+
+            // (OK)スプレットシートからレコードを取得して、booksテーブルに保存する
+
+            // (error)booksテーブルの主キーがスプレットシートのidと重複している為、
+            //  重複エラーが出る
+
+            // (やりたいこと)解決する為には重複しているところを自動で判別して、重複していないデータを
+            // 読み込めるようにする
+
+            // booksテーブルを取得
+            $books_tables_state = $pdo->query('SELECT * FROM books');
+            // booksテーブルを\PDO::FETCH_ASSOC（=1レコードずつ配列として取得し、カラム名をキーとしてもつ）で全ての配列を取得
+            $books_tables_records = $books_tables_state->fetchAll(\PDO::FETCH_ASSOC);
+
+            $loop_count = 0;
             foreach ($spread_sheet_values as $row_count => $spread_sheet_row) {
 
-                if ($row_count === 0) {
-                    //[0]の時はインサートしない（continue=ループを一回スキップする）
+                // 一行目はフィールド情報なので、飛ばす
+                if($loop_count === 0) {
+                    $loop_count++;
                     continue;
                 }
+
+                // スプレットシートのid（フィールド名）が取り出す
+                $spread_book_id = (int)$spread_sheet_row[0];
+
+                // foreach文で$books_tables_recordsを一つずつ取り出して、その中のidを取得する
+                foreach ($books_tables_records as $books_tables_record) {
+                    $book_id = $books_tables_record['id'];
+                    // カラム名がキーだから、idを指定してidのvalueを取得
+
+                    // mysqlのidとスプレットシートのidを比較
+                    if($book_id === $spread_book_id) {
+                        // continue 2で２つ前のループ文を抜けることができる
+                        $loop_count++;
+                        continue 2;
+                    }
+
+                }
+
+
+
+                // しかしスプレットシートの配列の始めはカラム名が入っていて、mysqlと一行ずれている
+                // そこの差分をうめる
+
+
+                //（解決するために考えたこと）
+                // 1.最後にインサートしたデータのidを取得する方法
+                // 2.両方のデータの入っているid同士を比較させる
+
+
+
+                // （やること）取得したid同士を比較して、重複していなければbooksテーブルに保存する処理
+                // (やること) 重複していれば、保存しない処理
+
+                // if ($books_id === スプレットシートのid) {
+                //     // books_idとスプレットシートのidが一緒であれば、保存しない処理
+
+                // } else {
+                //     // books_idとスプレットシートのidが重複しない場合は、保存する処理
+
+                // }
+
+                // インサート文（一行追加）を複数実行されるようにする
+                // $spread_sheet_valuesの行を複数インサートしたい。[0],[1],[2],[3]
+                // しかし[0]にはフィールド名が入っている為、そこはインサート文として取り入れないようにする
+                // それ以外の行を取り入れるようにする
+                // インサートの文と値のセットをループしたい
+                // row_count = テーブルの行のこと
+
+                // if ($row_count === 0) {
+                    //[0]の時はインサートしない（continue=ループを一回スキップする）
+                    // continue;
+                // }
 
                 // それ以外の時はインサートする
 
@@ -97,16 +173,25 @@ class SpreadSheet extends Model
                     $statement->bindValue($field,$cell_value);
                 }
 
+
+
+
+
+
                 // SQL実行
                 $statement->execute();
 
+                $loop_count++;
 
             }
+
+
 
         } finally {
             // SQLの接続を閉じる
             $pdo = null;
         }
+
 
 
 
@@ -139,7 +224,9 @@ class SpreadSheet extends Model
         );
 */
         return true;
+
     }
+
 
     /**
      * スプレッドシート操作用のインスタンスを生成するFunction
@@ -155,4 +242,8 @@ class SpreadSheet extends Model
         $client->setAuthConfig($credentials_path);
         return new \Google\Service\Sheets($client);
     }
+
+
+
 }
+

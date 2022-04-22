@@ -7,6 +7,7 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Models\SpreadSheet;
 use Illuminate\Support\Facades\DB;
+use \Google\Service\Sheets;
 
 class SpreadSheetController extends Controller
 {
@@ -27,7 +28,9 @@ class SpreadSheetController extends Controller
 
         SpreadSheet::insert_spread_sheet($sheet_id,$range,$insert_data);
 
+
         return response('格納に成功！！', 200);
+
     }
 
     public function index() {
