@@ -24,7 +24,7 @@ class SpreadSheetController extends Controller
         $range = 'A1:G';
 
         // 上記のデータを引数にもつ
-        SpreadSheet::insert_spread_sheet($sheet_id,$range);
+        SpreadSheet::spread_sheet_data($sheet_id,$range);
 
         return response('スプレットシートの新規データを保存できました！', 200);
 
