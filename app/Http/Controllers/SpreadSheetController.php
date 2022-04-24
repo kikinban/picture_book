@@ -17,19 +17,16 @@ class SpreadSheetController extends Controller
      * @return void
      */
     public function store(){
-        // スプレッドシートに格納するテストデータです
-        $insert_data = [
-            'hoge' => 'test text',
-            'huga' => 12345,
-            'foo'  => true
-        ];
+
+        // スプレットシートID(laravel-booksファイル)
         $sheet_id = '16--Q_YBC3HG8dBuGM58g34UgYTdPuDYafivApOCcp8U';
+        // スプレットシートの範囲指定
         $range = 'A1:G';
 
-        SpreadSheet::insert_spread_sheet($sheet_id,$range,$insert_data);
+        // 上記のデータを引数にもつ
+        SpreadSheet::insert_spread_sheet($sheet_id,$range);
 
-
-        return response('格納に成功！！', 200);
+        return response('スプレットシートの新規データを保存できました！', 200);
 
     }
 
