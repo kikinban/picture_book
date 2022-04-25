@@ -22,13 +22,15 @@
     </div>
     <div class="top_new_arrivals_book">
         <div class="top_new_arrivals_book_details">
-            @foreach ($books as $book )
+            @foreach ($new_arrival_books as $new_arrival_book)
                 <div class="top_new_arrivals_book_detail">
-                    <img src="{{ $book->image_url }}" alt="">
+                    <img src="{{ $new_arrival_book->book_image_url }}" alt="">
                     <ul>
-                        <li>{{ $book->title }}</li>
-                        <li>{{ $book->writer }}</li>
-                        <li>{{ $book->target_age }}</li>
+                        <li>{{ $new_arrival_book->book_title }}</li>
+                        <li>{{ $new_arrival_book->book_writer }}</li>
+                        <li>{{ $new_arrival_book->book_target_age }}</li>
+                        <li>{{ $new_arrival_book->book_page_number }}</li>
+                        <li>{{ $new_arrival_book->book_description }}</li>
                     </ul>
                 </div>
             @endforeach
@@ -68,11 +70,12 @@
         <p>全年齢</p>
     </div>
     <div class="top_age">
-        @foreach ($grouped_books_by_target_age as $target_age => $books)
-            <ul>
+        <ul>
+
+            @foreach ($book_target_ages as $target_age)
                 <li>{{ $target_age }}</li>
-            </ul>
-        @endforeach
+            @endforeach
+        </ul>
     </div>
 </div>
 
