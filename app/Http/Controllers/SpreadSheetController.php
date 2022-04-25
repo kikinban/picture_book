@@ -1,4 +1,5 @@
 <?php
+// strictモードの有効化
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
@@ -23,8 +24,11 @@ class SpreadSheetController extends Controller
         // スプレットシートの範囲指定
         $range = 'A1:G';
 
-        // 上記のデータを引数にもつ
-        SpreadSheet::spread_sheet_data($sheet_id,$range);
+        $spread_sheet_values = SpreadSheet::getSpreadSheetValues($sheet_id,$range);
+
+        $values = $spread_sheet_values->getValues();
+
+        Book::insertData($values);
 
         return response('スプレットシートの新規データを保存できました！', 200);
 
