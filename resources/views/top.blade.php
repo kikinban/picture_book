@@ -22,6 +22,7 @@
     </div>
     <div class="top_new_arrivals_book">
         <div class="top_new_arrivals_book_details">
+            {{-- booksテーブルから取得したデータを利用して、新着順に絵本情報を表示 --}}
             @foreach ($new_arrival_books as $new_arrival_book)
                 <div class="top_new_arrivals_book_detail">
                     <img src="{{ $new_arrival_book->book_image_url }}" alt="">
@@ -63,6 +64,7 @@
     </div>
 </div> --}}
 
+
 {{-- 年齢別絵本 --}}
 <div class="top_ages">
     <div class="top_heading_title">
@@ -71,7 +73,7 @@
     </div>
     <div class="top_age">
         <ul>
-
+            {{-- 年齢のボタンをクリックすると、対象年齢ごとの絵本情報が表示(0～6歳) --}}
             @foreach ($book_target_ages as $target_age)
                 <li>{{ $target_age }}</li>
             @endforeach

@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TopController;
-use App\Http\Controllers\SpreadSheetController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/top',[TopController::class, 'bookDetail']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-
-Route::get('/store',[SpreadSheetController::class, 'store']);
-
-Route::get('/data',[SpreadSheetController::class, 'index']);
+require __DIR__.'/auth.php';
