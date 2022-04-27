@@ -9,26 +9,42 @@ use Illuminate\Http\Request;
 use App\Models\SpreadSheet;
 use Illuminate\Support\Facades\DB;
 use \Google\Service\Sheets;
+use App\Services\SpreadSheetService;
 
 class SpreadSheetController extends Controller
 {
 
     /**
-     *
+     * スプレッドシート関連を格納している関数(store=格納)
      * @return void
      */
     public function store(){
 
-        // スプレットシートID(laravel-booksファイル)
-        $sheet_id = '16--Q_YBC3HG8dBuGM58g34UgYTdPuDYafivApOCcp8U';
-        // スプレットシートの範囲指定
-        $range = 'A1:G';
+        // Gドライブ内のマスターデータを格納しているフォルダーID（=master_dataフォルダー）
+        $master_folder_id = '1YgHdDrGER8Rduf96xQG7d-z_9v56abnI';
 
-        $spread_sheet_values = SpreadSheet::getSpreadSheetValues($sheet_id,$range);
+        // GCPのクライアント情報
+        $client = SpreadSheetService::getGoogleClient();
 
-        $values = $spread_sheet_values->getValues();
+        // master_dataフォルダー直下のファイルを全て取得
+        $spread_sheet_files = SpreadSheetService::getSpreadSheetFiles($client, $master_folder_id);
 
-        Book::insertData($values);
+        foreach ($spread_sheet_files->getFiles() as $file) {
+
+            // スプレッドシートのid(=url)
+            $sheet_id = $file->getId();
+            // スプレッドシードのファイル名（これがデータベースのテーブル名と紐づく）
+            $sheet_name = $file->getName();
+
+            // ファイルをリスト化
+            $spread_sheet_values = SpreadSheetService::getSpreadSheetValues($client, $sheet_id);
+            // 配列として取得
+            $values = $spread_sheet_values->getValues();
+
+            // データベースにインサート
+            SpreadSheetService::insertDatabase($sheet_name, $values);
+
+        }
 
         return response('スプレットシートの新規データを保存できました！', 200);
 
