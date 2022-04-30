@@ -49,7 +49,7 @@ class LoginRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'name' => trans('auth.failed'),
+                'name' => __('auth.failed'),
             ]);
         }
 
