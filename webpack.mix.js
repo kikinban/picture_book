@@ -17,4 +17,5 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     require('autoprefixer'),
 ])
 .sass('resources/css/app.scss', 'public/css')
-.sass('resources/css/master.scss', 'public/css');
+.sass('resources/css/master.scss', 'public/css')
+.vue();
