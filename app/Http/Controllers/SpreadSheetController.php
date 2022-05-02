@@ -30,7 +30,6 @@ class SpreadSheetController extends Controller
         $spread_sheet_files = SpreadSheetService::getSpreadSheetFiles($client, $master_folder_id);
 
         foreach ($spread_sheet_files->getFiles() as $file) {
-
             // スプレッドシートのid(=url)
             $sheet_id = $file->getId();
             // スプレッドシードのファイル名（これがデータベースのテーブル名と紐づく）
@@ -46,7 +45,12 @@ class SpreadSheetController extends Controller
 
         }
 
-        return response('スプレットシートの新規データを保存できました！', 200);
+        return response()->json(
+            [
+                "result" => 'スプレットシートの新規データを保存できました！',
+            ],
+            200 // HTTPステータスコード（=200 OK）
+        );
 
     }
 
