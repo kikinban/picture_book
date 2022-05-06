@@ -14,9 +14,9 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <link rel="stylesheet" href="{{ mix('css/dashboard.css') }}">
 
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
 
     {{-- 変数名の詳細は・・・admin\auth\dashboard.blade.php --}}
