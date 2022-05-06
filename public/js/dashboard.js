@@ -19695,22 +19695,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _mixins_processing__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/processing */ "./resources/js/mixins/processing.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-// Vue.jsのdefineComponent関数を作成
+// Vue.jsのdefineComponent関数を呼び出し
+ // screen.js呼び出して、スクリーンロック処理を利用
+
  // 関数を呼び出し、propsとdataを渡す
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue__WEBPACK_IMPORTED_MODULE_1__.defineComponent)({
   // Laravelのurlパスを値として受け取る
   props: ["url"],
+  // screenLook変数呼び出し
+  mixins: [_mixins_processing__WEBPACK_IMPORTED_MODULE_2__.screenLook],
+  // 関数
   methods: {
     // スプレッドシートのAPIリクエストする関数
     spreadSheetsCallApi: function spreadSheetsCallApi() {
-      console.log("開始"); // 取得したurlをsheet_urlに代入
+      var _this = this;
+
+      console.log("開始"); // 画面ブロック開始
+
+      this.startProcessing(); // 取得したurlをsheet_urlに代入
 
       var sheet_url = this.url; // 非同期通信の処理(async=非同期)
 
@@ -19734,9 +19744,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 case 6:
                   data_json = _context.sent;
                   console.log(data_json);
-                  alert(data_json.result);
+                  alert(data_json.result); // 画面ブロック解除
 
-                case 9:
+                  _this.endProcessing();
+
+                case 10:
                 case "end":
                   return _context.stop();
               }
@@ -19776,12 +19788,15 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_2 = ["click"];
+var _hoisted_2 = ["disabled"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     "class": "insert_button",
-    click: _ctx.spreadSheetsCallApi
+    onClick: _cache[0] || (_cache[0] = function () {
+      return _ctx.spreadSheetsCallApi && _ctx.spreadSheetsCallApi.apply(_ctx, arguments);
+    }),
+    disabled: _ctx.isProcessing()
   }, "登録", 8
   /* PROPS */
   , _hoisted_2)], 64
@@ -19822,6 +19837,42 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // Vue.jsの導入
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+/***/ }),
+
+/***/ "./resources/js/mixins/processing.js":
+/*!*******************************************!*\
+  !*** ./resources/js/mixins/processing.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "screenLook": () => (/* binding */ screenLook)
+/* harmony export */ });
+__webpack_require__(/*! ../bootstrap */ "./resources/js/bootstrap.js"); // スクリーンロックする処理
+// processing(=処理)
+
+
+var screenLook = {
+  data: function data() {
+    return {
+      processing: false
+    };
+  },
+  methods: {
+    startProcessing: function startProcessing() {
+      this.processing = true;
+    },
+    endProcessing: function endProcessing() {
+      this.processing = false;
+    },
+    isProcessing: function isProcessing() {
+      return this.processing;
+    }
+  }
+};
 
 /***/ }),
 
