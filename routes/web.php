@@ -45,6 +45,8 @@ Route::get('/top', [TopController::class, 'bookDetail']);
 Route::get('/store', [SpreadSheetController::class, 'store']);
 
 
-
+Route::get('/vue', function () {
+    return view('vue');
+});
 
 

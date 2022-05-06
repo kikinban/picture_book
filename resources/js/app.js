@@ -1,7 +1,21 @@
-require('./bootstrap');
+require("./bootstrap");
 
-import Alpine from 'alpinejs';
+const Counter = {
+    data() {
+        return {
+            counter: 0,
+        };
+    },
+    mounted() {
+        setInterval(() => {
+            this.counter++;
+        }, 1000);
+    },
+};
 
-window.Alpine = Alpine;
+Vue.createApp(Counter).mount("#counter");
 
-Alpine.start();
+
+
+
+

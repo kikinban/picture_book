@@ -1,4 +1,7 @@
 const mix = require('laravel-mix');
+//const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+//const TerserPlugin = require("terser-webpack-plugin");
+//const nodeExternals = require('webpack-node-externals');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,11 +14,14 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
+mix.js('resources/js/app.js', 'public/js')
+.js('resources/js/dashboard.js', 'public/js')
+.postCss('resources/css/app.css', 'public/css', [
     require('postcss-import'),
     require('tailwindcss'),
     require('autoprefixer'),
 ])
 .sass('resources/css/app.scss', 'public/css')
 .sass('resources/css/master.scss', 'public/css')
-.vue();
+.sass('resources/css/dashboard.scss', 'public/css')
+.vue()
