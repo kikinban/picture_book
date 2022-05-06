@@ -19,7 +19,9 @@
         {{-- メインボタン --}}
         <div class="admin_dashboard_main_selections">
             <ul>
-                <li id="data_register">データ登録</li>
+                <li id="data_register">
+                    <insert-component :url='{{ json_encode(url('/store')) }}' />
+                </li>
                 <li>購入履歴データ</li>
                 <li>お問い合わせ</li>
                 <li>ユーザーデータ</li>
@@ -27,9 +29,11 @@
             </ul>
         </div>
     </div>
+        <script src="{{ asset('js/dashboard.js') }}"></script>
+
 </x-admin-layout>
 
-<script>
+{{-- <script>
     //スプレッドシートのAPIリクエストをする関数
     // asyncで非同期通信
     async function sheetsCallApi() {
@@ -56,9 +60,9 @@
     //ボタンにcallAPI関数を登録する
     let button = document.getElementById('test');
     button.onclick = sheetsCallApi;
-</script>
+</script> --}}
 
-<script>
+{{-- <script>
     // スプレッドシートのAPIリクエストする関数
     // asyncで非同期通信
     async function spredSheetsCallApi() {
@@ -76,6 +80,16 @@
     }
 
 
-</script>
+</script> --}}
 
-// 画面ブロック！
+{{-- <script>
+    new Vue({
+    el: '#data_register',
+    data() {
+        return {
+        link: "{{ url('/store') }}"
+        }
+    }
+    });
+</script> --}}
+

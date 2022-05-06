@@ -29,3 +29,4 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 // Vue.jsの導入
 window.Vue = require("vue");
+
