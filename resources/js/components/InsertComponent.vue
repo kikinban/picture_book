@@ -6,6 +6,7 @@
 <template>
     <p>データ登録</p>
     <button type="button" class="insert_button" @click="spreadSheetsCallApi" :disabled="isProcessing()">登録</button>
+    <vue-element-loading :active="isActive" spinner="bar-fade-scale"></vue-element-loading>
 </template>
 
 // 処理内容
@@ -14,8 +15,13 @@
     // Vue.jsのdefineComponent関数を呼び出し
     import { defineComponent } from 'vue';
 
+
+
     // screen.js呼び出して、スクリーンロック処理を利用
     import { screenLook } from '../mixins/processing';
+
+    // ローディング
+    import VueElementLoading from 'vue-element-loading'
 
     // 関数を呼び出し、propsとdataを渡す
     export default defineComponent({
@@ -57,6 +63,9 @@
 
                 console.log("終了");
             }
+        },
+        components: {
+            VueElementLoading
         }
     })
 </script>

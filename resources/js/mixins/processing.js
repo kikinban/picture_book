@@ -3,6 +3,7 @@ require("../bootstrap");
 // スクリーンロックする処理
 // processing(=処理)
 
+
 export const screenLook = {
     data() {
         return {
