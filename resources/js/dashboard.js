@@ -4,6 +4,8 @@ require("./bootstrap");
 // InsertComponent.vueファイル
 import InsertComponent from './components/InsertComponent'
 
+
+
 const app = {
     components: {
         InsertComponent

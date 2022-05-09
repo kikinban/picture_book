@@ -16,7 +16,6 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <link rel="stylesheet" href="{{ mix('css/dashboard.css') }}">
 
-        <!-- Scripts -->
     </head>
 
     {{-- 変数名の詳細は・・・admin\auth\dashboard.blade.php --}}

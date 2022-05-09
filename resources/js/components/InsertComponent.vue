@@ -4,32 +4,36 @@
 
 // ビュー
 <template>
-    <p>データ登録</p>
-    <button type="button" class="insert_button" @click="spreadSheetsCallApi" :disabled="isProcessing()">登録</button>
-    <vue-element-loading :active="isActive" spinner="bar-fade-scale"></vue-element-loading>
+    <loading-component :show="show" />
+    <button type="button" id="insert_button_picture_book" @click="spreadSheetsCallApi">絵本 登録</button>
+    <button type="button" id="insert_button_special_feature" @click="spreadSheetsCallApi">特集 登録</button>
 </template>
 
 // 処理内容
 <script>
 
+
     // Vue.jsのdefineComponent関数を呼び出し
     import { defineComponent } from 'vue';
 
-
-
-    // screen.js呼び出して、スクリーンロック処理を利用
-    import { screenLook } from '../mixins/processing';
-
-    // ローディング
-    import VueElementLoading from 'vue-element-loading'
+    // ローディング画面のcomponentを呼び出し
+    import LoadingComponent from './LoadingComponent';
 
     // 関数を呼び出し、propsとdataを渡す
     export default defineComponent({
+        components: {
+            LoadingComponent
+        },
 
         // Laravelのurlパスを値として受け取る
         props:["url"],
-        // screenLook変数呼び出し
-        mixins:[screenLook],
+
+        data() {
+            return {
+                show: false,
+            };
+        },
+
         // 関数
         methods: {
 
@@ -38,8 +42,9 @@
 
                 console.log("開始");
 
-                // 画面ブロック開始
-                this.startProcessing();
+                // ローディング画面表示
+                this.show = true;
+
 
                 // 取得したurlをsheet_urlに代入
                 let sheet_url = this.url;
@@ -52,10 +57,10 @@
                     // 値をjsonに変換し、代入
                     const data_json = await data.json();
                     console.log(data_json);
-                    alert(data_json.result);
 
-                    // 画面ブロック解除
-                    this.endProcessing();
+                    // ローディング画面表示なし
+                    this.show = false;
+
                 }
 
                 // 呼び出し
@@ -64,8 +69,6 @@
                 console.log("終了");
             }
         },
-        components: {
-            VueElementLoading
-        }
+
     })
 </script>
