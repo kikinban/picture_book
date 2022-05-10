@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Http;
 
 use App\Http\Controllers\SpreadSheetController;
 use App\Http\Controllers\TopController;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,5 +49,8 @@ Route::get('/store', [SpreadSheetController::class, 'store']);
 Route::get('/vue', function () {
     return view('vue');
 });
+
+// 絵本詳細画面
+Route::get('books/show/{id}', [BookController::class, 'show'])->name('book.show');
 
 
