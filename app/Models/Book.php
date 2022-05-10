@@ -23,9 +23,11 @@ class Book extends Model
         'book_title',
         'book_writer',
         'book_target_age',
-        'book_image_url',
+        'book_the_publisher',
         'book_page_number',
         'book_description',
+        'book_amazon_link',
+        'book_image_url',
         'created_at',
         'updated_at',
     ];
