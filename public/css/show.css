@@ -1,0 +1,86 @@
+@charset "UTF-8";
+/* ------------------------------------------
+                絵本詳細ページscss
+-------------------------------------------- */
+.book_contents {
+  width: 90%;
+  margin: 20px auto;
+  position: relative;
+}
+.book_contents .book_title {
+  display: flex;
+}
+.book_contents .book_title img {
+  height: 100%;
+  margin-right: 5px;
+}
+.book_contents h1 {
+  padding: 0 0 10px 0;
+}
+.book_contents .book_image {
+  width: 30%;
+  border: solid 2px gray;
+  border-radius: 3px;
+  padding: 15px 10px 0 15px;
+}
+.book_contents .book_image a img {
+  width: 100%;
+  height: auto;
+}
+.book_contents .book_details {
+  position: absolute;
+  top: 10%;
+  left: 42%;
+  display: flex;
+}
+.book_contents .book_details .book_ul_title {
+  list-style: none;
+  font-size: 14px;
+}
+.book_contents .book_details .book_ul_title li {
+  margin: 5px 0;
+}
+.book_contents .book_details .book_ul_span {
+  list-style: none;
+  font-size: 14px;
+}
+.book_contents .book_details .book_ul_span li {
+  margin: 5px;
+}
+.book_contents .book_details .book_ul_content {
+  list-style: none;
+  font-size: 14px;
+}
+.book_contents .book_details .book_ul_content li {
+  margin: 5px 0;
+}
+.book_contents .book_show_buttons {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.book_contents .book_show_buttons .show_button_left {
+  width: 49%;
+  border: solid 2px rgb(157, 157, 10);
+  border-radius: 3px;
+  background-color: yellow;
+  text-align: center;
+  line-height: normal;
+  text-decoration: none;
+}
+.book_contents .book_show_buttons .show_button_right {
+  width: 49%;
+  border: solid 2px rgb(17, 143, 143);
+  border-radius: 3px;
+  background-color: aqua;
+}
+.book_contents .book_introductions h2 {
+  margin: 20px 0;
+  padding-bottom: 5px;
+  border-bottom: solid 2px orange;
+}
+.book_contents .book_review h2 {
+  margin: 20px 0;
+  padding-bottom: 5px;
+  border-bottom: solid 2px orange;
+}

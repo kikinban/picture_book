@@ -24,5 +24,7 @@ mix.js('resources/js/app.js', 'public/js')
 .sass('resources/css/app.scss', 'public/css')
 .sass('resources/css/master.scss', 'public/css')
 .sass('resources/css/dashboard.scss', 'public/css')
+.sass('resources/css/top.scss', 'public/css')
+.sass('resources/css/show.scss', 'public/css')
 .vue()
 .sourceMaps();

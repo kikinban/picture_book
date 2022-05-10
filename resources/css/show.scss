@@ -1,0 +1,123 @@
+
+/* ------------------------------------------
+                絵本詳細ページscss
+-------------------------------------------- */
+
+.book_contents {
+    width: 90%;
+    margin: 20px auto;
+    position: relative;
+
+    // 絵本タイトル枠
+    .book_title {
+        display: flex;
+
+        // 絵本アイコン画像
+        img {
+            height: 100%;
+            margin-right: 5px;
+        }
+    }
+    // タイトル
+    h1 {
+        padding: 0 0 10px 0;
+    }
+
+    // 絵本画像枠
+    .book_image {
+        width: 30%;
+        border: solid 2px gray;
+        border-radius: 3px;
+        padding: 15px 10px 0 15px;
+
+        // 絵本画像（アマゾンリンク）
+        a {
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+
+    // 絵本詳細枠
+    .book_details {
+        position: absolute;
+        top: 10%;
+        left: 42%;
+        display: flex;
+
+        // 項目タイトル
+        .book_ul_title {
+            list-style: none;
+            font-size: 14px;
+
+            li {
+                margin: 5px 0;
+            }
+        }
+
+        // コロン
+        .book_ul_span {
+            list-style: none;
+            font-size: 14px;
+
+            li {
+                margin: 5px;
+            }
+        }
+
+        // booksテーブルデータを表示
+        .book_ul_content {
+            list-style: none;
+            font-size: 14px;
+
+            li {
+                margin: 5px 0;
+            }
+        }
+    }
+
+    // ボタン枠
+    .book_show_buttons {
+        margin: 10px 0;
+        display: flex;
+        justify-content: space-between;
+
+        // アマゾンリンクのボタン
+        .show_button_left {
+            width: 49%;
+            border: solid 2px rgb(157, 157, 10); // TODO: ボタン背景色変更
+            border-radius: 3px;
+            background-color: yellow; // TODO: ボタン背景色変更
+            text-align: center;
+            line-height: normal;
+            text-decoration: none;
+        }
+
+         // レビュー一覧へ
+        .show_button_right {
+            width: 49%;
+            border: solid 2px rgb(17, 143, 143); // TODO: ボタン背景色変更
+            border-radius: 3px;
+            background-color: aqua; // TODO: ボタン背景色変更
+        }
+    }
+
+    // 作品紹介枠
+    .book_introductions {
+        h2 {
+            margin: 20px 0;
+            padding-bottom: 5px;
+            border-bottom: solid 2px orange;
+        }
+    }
+
+    // レビュー枠
+    .book_review {
+        h2 {
+            margin: 20px 0;
+            padding-bottom: 5px;
+            border-bottom: solid 2px orange;
+        }
+    }
+}
