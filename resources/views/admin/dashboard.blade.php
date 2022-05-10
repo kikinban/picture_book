@@ -20,17 +20,38 @@
         <div class="admin_dashboard_main_selections">
             <ul>
                 <li id="data_register">
-                    <insert-component :url='{{ json_encode(url('/store')) }}' />
+                    <p>スプレッドシートのデータを登録します</p>
+                    <insert-component :url='{{ json_encode(url('/store')) }}'/>
                 </li>
-                <li>購入履歴データ</li>
-                <li>お問い合わせ</li>
-                <li>ユーザーデータ</li>
-                <li id="test">APIテスト</li>
+                <li>
+                    <p>絵本情報</p>
+                    <ul>
+                        <li>0歳</li>
+                        <li>1歳</li>
+                        <li>2歳</li>
+                        <li>3歳</li>
+                        <li>4歳</li>
+                        <li>5歳</li>
+                        <li>6歳</li>
+                        <li>全絵本</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li>ユーザー購入情報</li>
+                        <li>ユーザー管理</li>
+                        <li>ユーザーレビュー確認</li>
+                    </ul>
+                </li>
+                <li>
+                    <p>売り上げランキング</p>
+                    <p>欠品確認</p>
+                </li>
+                <li>お客様からのお問い合わせ</li>
             </ul>
         </div>
     </div>
-        <script src="{{ asset('js/dashboard.js') }}"></script>
-
+    <script src="{{ asset('js/dashboard.js') }}"></script>
 </x-admin-layout>
 
 {{-- <script>
